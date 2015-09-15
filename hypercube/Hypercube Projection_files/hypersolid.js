@@ -42,12 +42,12 @@
     window.rotations = { xy: 0, xz: 0, xw: 0, yz: 0, yw: 0, zw: 0 };
 
     var rotationOrder = {
-      yz: 1,
-      xw: 1,
-      yw: 1,
-      zw: 1,
-      xy: 1,
       xz: 1,
+      xw: 1,
+      yz: 1,
+      yw: 1,
+      xy: 1,
+      zw: 1,
     };
 
     // Multiplication by vector rotation matrices of dimension 4
