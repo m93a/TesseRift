@@ -32,6 +32,8 @@
     var self = this,
       vertices = argv[0],
       edges = argv[1];
+    
+    window.shape = this;
 
     // Rotations will always be relative to the original shape to avoid rounding errors.
     // This is a structure for caching the rotated vertices.
@@ -142,6 +144,8 @@
         }
       }
     }
+    
+    this.doIt = applyRotations;
 
     function copyVertices() {
       for (var i in vertices) {
@@ -164,6 +168,8 @@
       shape = argv[0],
       canvas = argv[1],
       options = argv[2];
+    
+    window.viewport = this;
 
     options = options || {};
 
@@ -172,13 +178,15 @@
     canvas.height = options.height || DEFAULT_VIEWPORT_HEIGHT;
     var bound = Math.min(canvas.width, canvas.height) / 2;
 
-    var context = canvas.getContext('2d');
+    var context = this.context = canvas.getContext('2d');
     context.font = options.font || DEFAULT_VIEWPORT_FONT;
     context.textBaseline = 'top';
     context.fillStyle = options.fontColor || DEFAULT_VIEWPORT_FONT_COLOR;
     context.lineWidth = options.lineWidth || DEFAULT_VIEWPORT_LINE_WIDTH;
     context.lineJoin = options.lineJoin || DEFAULT_VIEWPORT_LINE_JOIN;
-
+    
+    var bgColor = options.bgColor || "#fff";
+    
     var checkboxes = options.checkboxes || DEFAULT_CHECKBOX_VALUES;
 
     var clicked = false;
@@ -188,7 +196,8 @@
       var vertices = shape.getVertices();
       var edges = shape.getEdges();
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = bgColor;
+      context.fillRect(0, 0, canvas.width, canvas.height);
       var adjusted = [];
       for (var i in vertices) {
         if (checkboxes.perspective.checked) {
@@ -337,7 +346,12 @@ function initScene() {
   // controls = new THREE.OrbitControls(camera);
 }
 
-function draw() {
+function draw(){
+  shape./*just*/doIt/*!*/();
+  viewport.draw();
+}
+
+function drawFoo() {
       var vertices = shape.getVertices();
       var edges = shape.getEdges();
 

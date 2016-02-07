@@ -1,4 +1,4 @@
-links
+﻿links
 4D storkát jinak – http://actamont.tuke.sk/pdf/2005/n2/26svab.pdf
 tesserakt z řec. τεσσερα ακτινες, tj. „čtyři paprsky“ – Oxford English Dictionary [online]
 Generating and Rendering 4D Polytopes – http://torus.math.uiuc.edu/jms/Papers/dodecaplex/new.pdf
