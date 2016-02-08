@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<!-- saved from url=(0028)http://hypersolid.milosz.ca/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta charset="UTF-8"> 
-		<title>Hypercube Projection</title>
-		<link rel="stylesheet" type="text/css" href="./Hypercube Projection_files/main.css">
-		<script type="text/javascript" src="./Hypercube Projection_files/hypersolid.js"></script><style type="text/css"></style>
-		<script type="text/javascript" src="./Hypercube Projection_files/hypersolid.shapebank.js"></script>
-                <script src="./Hypercube Projection_files/LZWEncoder.js"></script>
-                <script src="./Hypercube Projection_files/NeuQuant.js"></script>
-                <script src="./Hypercube Projection_files/GIFEncoder.js"></script>
-                <script src="./animator.js"></script>
-	<style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style></head>
-	<body style="">
-		<canvas id="hypercube-canvas" width="480" height="480">Unfortunately, your browser does not support coolness.</canvas>
+<!doctype html>
+<html>
+ <head>
+  <meta charset=utf-8 />
+  <title>Hypercube Projection</title>
+  
+  <link rel=stylesheet href=style.css>
+  
+  <script src=hypersolid.js           ></script>
+  <script src=hypersolid.shapebank.js ></script>
+  
+  <script src=libgif/LZWEncoder.js    ></script>
+  <script src=libgif/NeuQuant.js      ></script>
+  <script src=libgif/GIFEncoder.js    ></script>
+  
+  <script src=animator.js></script>
+ 
+ </head>
+ <body>
+		<canvas id="hypercube-canvas" width="480" height="480"></canvas>
 		<table id="instructions">
 			<tbody><tr>
 				<td>drag left/right</td><td><strong>xz</strong> rotation</td>
@@ -44,13 +49,16 @@
 				</tr>
 			</tbody></table>
 		</form>
-	<div id="errata">The rotation UI is currently slightly wonky! This is the result of a refactoring and apparently also of my lack of understanding of Gimbal Locks! I am working on it! <div class="sig">Milosz</div></div>
-	<div id="viewport"></div>
-	<script src="../examples/lib/three.min.r59.js"></script>
-	<script type="text/javascript">
-	/* <![CDATA[ */ (function() {
+	
+        <div id="viewport"></div>
+	<script>
+	(function() {
 
-		Hypersolid.Viewport(Hypersolid.Hypercube(), document.getElementById('hypercube-canvas'), {
+		var shape  = Hypersolid.Hypercube();
+                var canvas = document.getElementById('hypercube-canvas');
+                
+		var viewport =
+                Hypersolid.Viewport(shape, canvas, {
 			checkboxes: document.getElementById('hypercube-options'),
 			width: 480,
 			height: 480,
@@ -59,10 +67,15 @@
 			fontColor: '#000',
 			lineWidth: 4,
 			lineJoin: 'round'
-		}).draw();	
+		}).draw();
+                
+                function redraw(){
+                  shape.applyRotations();
+                  viewport.draw();
+                }
 
-	})(); // ]]>
+	})();
 	</script>
 	
-
-<iframe id="rdbIndicator" width="100%" height="270" border="0" src="./Hypercube Projection_files/indicator.html" style="display: none; border: 0; position: fixed; left: 0; top: 0; z-index: 2147483647"></iframe></body></html>
+ </body>
+</html>

@@ -1,5 +1,6 @@
 window.addEventListener('load',function(){
 
+return;
 
 var encoder = new GIFEncoder();
 encoder.setRepeat(0);
@@ -11,8 +12,8 @@ encoder.setDelay(100);
 
 var i = 30;
 while(i--){
-  rotations.xz += .05;
-  draw();
+  shape.rotations.xz += .05;
+  redraw();
   encoder.addFrame(viewport.context);
 }
 
