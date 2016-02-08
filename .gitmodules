@@ -1,0 +1,3 @@
+[submodule "lib4"]
+	path = lib4
+	url = https://github.com/m93a/FOUR.js
